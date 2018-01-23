@@ -3,8 +3,8 @@ function [map_merge, map_conf, map_meas, map_gt, map_pos_input, path] = run_pipe
 
 
 %% init
-base_dir = strcat('/datagrid/vras/petrito1/workspace/data/kitti/',map_name);
-net_path = strcat('',net_name);
+base_dir = map_name;
+net_path = net_name;
 
 %% voxel map parameters
 voxel_size = 0.2;
@@ -23,10 +23,11 @@ path = cell2mat(cellfun(@(T) T(1:3,4), velo_to_map.T, 'UniformOutput', false));
 
 % build GT map
 if exist(strcat(base_dir,'/voxel_map_0.20.mat'), 'file')==2
-    map_gt = getfield(load(strcat(base_dir,'/voxel_map_0.20.mat')), 'vox_map');
+    map_gt = getfield(load(strcat(base_dir,'/voxel_map_0.20.mat')), 'map_gt');
 else
     map_gt = VoxelMap(voxel_size, free_update, hit_update, occupied_threshold);
     map_gt = build_voxel_map(map_gt, base_dir, velo_to_map.T, measurement_range);
+    save(strcat(base_dir,'/voxel_map_0.20.mat'), 'map_gt')
 end
 
 % Init maps: confidence, measurement, ...
