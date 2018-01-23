@@ -4,7 +4,7 @@ function [map_merge, map_conf, map_meas, map_gt, map_pos_input, path] = run_pipe
 
 %% init
 base_dir = strcat('/datagrid/vras/petrito1/workspace/data/kitti/',map_name);
-net_path = strcat('/datagrid/vras/salanvoj/matconvnet_exp10/',net_name);
+net_path = strcat('',net_name);
 
 %% voxel map parameters
 voxel_size = 0.2;
