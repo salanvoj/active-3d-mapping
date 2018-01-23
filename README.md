@@ -2,7 +2,6 @@
 Evaluation code for following publication: https://arxiv.org/abs/1708.02074 
 
 # Follow these instructions:
-
 1) Download this repository to workspace.
 2) Download voxelmap repository from this url https://bitbucket.org/tpetricek/voxel_map and follow how to build instruction there
 3) Download kitti development kit from http://kitti.is.tue.mpg.de/kitti/devkit_raw_data.zip
