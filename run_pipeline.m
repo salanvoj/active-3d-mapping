@@ -60,7 +60,6 @@ step = 5;
 % Planning horizont
 n_plan_pos = 5;
 
-mkdir('map_exp');
 if(draw)    
     f1 = figure(101);
     f2 = figure(102);
@@ -95,7 +94,7 @@ for frame=1:step:size(path, 2)
     %% merge
     % get CNN input
     [~, val] = map_meas.get_voxels(points_in_map);
-    % upravit vstupy na -1 1 0
+    % change inputs to [-1 0 1]
     val(isnan(val)) = 0;
     val(val<0) = -1;
     val(val>0) = 1;
@@ -112,7 +111,7 @@ for frame=1:step:size(path, 2)
     map_conf.update_voxels(points_in_map, double(output(:)'));
     map_merge.update_voxels(points_in_map, double(output(:)'));
     
-    %   measurable data
+    % measurable data
     direction = velo_to_map.T{frame}(1:3,1:3)*local_dir;
     [pos,val] = map_gt.trace_rays(origin, direction, measurement_range(2));
     map_pos_input.update_lines(origin, pos(:, val >= occupied_threshold));
