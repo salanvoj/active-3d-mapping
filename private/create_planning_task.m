@@ -18,7 +18,7 @@ assert(isa(map, 'VoxelMap'));
 assert(iscell(T));
 assert(ismatrix(local_dirs));
 if nargin < 4 || isempty(mode)
-    mode = 'occ_thresh';
+    mode = 'vis_prob';
 end
 assert(ischar(mode));
 assert(ismember(mode, {'occ_thresh' 'free_prob' 'vis_thresh' 'vis_prob' 'vis_prob_simple'}));
@@ -127,13 +127,5 @@ else
         A = P;
     end
 end
-% fprintf('Creating visibility matrix with %i nonzero elements: %.3f s.\n', ...
-        % nnz(A), toc(t));
 
-% vis_plan(map, velo_path, T, thresh_logodds, uni_x, P, p, c, rows_cell)
-    
-end
-
-function g = gain(p)
-g = min(p, 1 - p);
 end

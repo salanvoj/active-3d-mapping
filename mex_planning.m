@@ -1,7 +1,7 @@
 function mex_planning()
 %MEX_PLANNING Build planning mex libs
 
-cpp_dir = fileparts(mfilename('fullpath'));
+cpp_dir = fullfile(fileparts(mfilename('fullpath')), 'private');
 
 for f = {'plan_rays_greedy.cpp'}
     mex('-largeArrayDims', ... %'-v', ...

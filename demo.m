@@ -1,4 +1,5 @@
-run matconvnet/matlab/vl_setupnn.m ; % activate MatConvNet if needed
+mex_planning();  % Comment out once compiled.
+close all; clear; clc;
 
 % testing sequences
 map_name{1} = '2011_09_26/2011_09_26_drive_0048_sync';
@@ -33,16 +34,9 @@ map_name{26} = '2011_09_26/2011_09_26_drive_0087_sync';
 index = 1; % change index to choose map;  
 choosen_map = map_name{index};
 
-net_name = 'final_net.mat'
+net_name = 'final_net.mat';
+planning = 'greedy';  % change to 'random' to make random measurements
+draw_figure = true;  % change to false to disable drawing figures
 
-planning = 'greedy'; % change to 'random' to make random measurements
-
-mode = 'vis_prob'
-
-draw_figure = 1;  % change to 0 to disable drawing figures
-
-
-[map_merge, map_conf, map_meas, map_gt, map_measurable,  path] = run_pipeline(choosen_map, net_name, planning, draw_figure, mode);
-      
-
- 
+[map_merged, map_conf, map_meas, map_gt, map_measurable, path] = ...
+    run_pipeline(choosen_map, net_name, planning, draw_figure);
