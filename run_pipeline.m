@@ -59,9 +59,6 @@ if draw
 end
 
 for frame = 1:step:size(path, 2)
-    if frame > 100
-        break;
-    end
     t_frame = tic();
     % Plan (random / greedy). Start with greedy.
     if strcmpi(planning, 'random') || frame < 1 + step
